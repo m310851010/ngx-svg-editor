@@ -1,0 +1,9 @@
+{
+  "$schema": "../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../dist/ngx-svg-editor",
+  "lib": {
+    "entryFile": "./public-api.ts",
+    "styleIncludePaths": ["node_modules"]
+  },
+  "assets": ["./**/*.less", "./extensions/**/*.*", "./images/**/*.*", "./shapelib/**/*.*"]
+}

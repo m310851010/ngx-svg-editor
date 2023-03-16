@@ -1,0 +1,134 @@
+<a class="menu">
+  <div class="menu_title logo">
+    <svg viewBox="0 0 16 16" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+      <path d="M-.1 16.1L16 .04V16.1H-.1z"></path>
+      <path d="M0 16.1V.1l16 16H0z" fill="var(--z7)"></path>
+    </svg>
+  </div>
+  <div class="menu_list inverted-undo">
+    <div id="modal_about" class="menu_item" data-action="about">关于...</div>
+    <div class="separator"></div>
+    <div id="modal_preferences" class="menu_item" data-action="configure">配置...</div>
+    <div id="modal_shortcuts" class="menu_item" data-action="shortcuts">快捷键...</div>
+    <div class="menu_item modal_donate" data-action="donate">捐赠或赞助...</div>
+  </div>
+</a>
+
+<div class="menu">
+  <div class="menu_title" (mousedown)="onMousedown()">文件</div>
+  <div class="menu_list inverted-undo" id="file_menu">
+    <div data-action="clear" id="tool_clear" class="menu_item">新建文档</div>
+
+    <div id="tool_open" class="menu_item">
+      <input type="file" accept="image/svg+xml" id="tool_open_input" />
+      打开SVG...
+      <span class="shortcut" style="display: none">⌘O</span>
+    </div>
+
+    <div id="tool_import" class="menu_item">
+      <input type="file" accept="image/*" id="tool_import_input" />
+      替换图片...
+      <span class="shortcut" style="display: none">⌘K</span>
+    </div>
+    <div data-action="save" id="tool_save" class="menu_item">
+      保存图片...
+      <span class="shortcut">⌘S</span>
+    </div>
+    <div data-action="export" id="tool_export" class="menu_item">导出 PNG</div>
+  </div>
+</div>
+
+<div class="menu">
+  <div class="menu_title">编辑</div>
+  <div class="menu_list inverted-undo" id="edit_menu">
+    <div data-action="undo" class="menu_item" id="tool_undo">
+      撤消
+      <span class="shortcut">⌘Z</span>
+    </div>
+    <div data-action="redo" class="menu_item" id="tool_redo">
+      重做
+      <span class="shortcut">⌘Y</span>
+    </div>
+    <div class="separator"></div>
+    <div data-action="cutSelected" class="menu_item action_selected disabled" id="tool_cut">
+      剪切
+      <span class="shortcut">⌘X</span>
+    </div>
+    <div data-action="copySelected" class="menu_item action_selected disabled" id="tool_copy">
+      复制
+      <span class="shortcut">⌘C</span>
+    </div>
+    <div data-action="pasteSelected" class="menu_item action_selected disabled" id="tool_paste">
+      粘贴
+      <span class="shortcut">⌘V</span>
+    </div>
+    <div data-action="duplicateSelected" class="menu_item action_selected disabled" id="tool_clone">
+      复制并粘贴
+      <span class="shortcut">⌘D</span>
+    </div>
+    <div data-action="deleteSelected" class="menu_item action_selected disabled" id="tool_delete">
+      删除
+      <span>⌫</span>
+    </div>
+  </div>
+</div>
+
+<div class="menu">
+  <div class="menu_title">对象</div>
+  <div class="menu_list inverted-undo" id="object_menu">
+    <div class="menu_item action_selected disabled" id="tool_move_top">
+      置于顶层
+      <span class="shortcut">⌘⇧↑</span>
+    </div>
+    <div class="menu_item action_selected disabled" id="tool_move_up">
+      置于上一层
+      <span class="shortcut">⌘↑</span>
+    </div>
+    <div class="menu_item action_selected disabled" id="tool_move_down">
+      置于下一层
+      <span class="shortcut">⌘↓</span>
+    </div>
+    <div class="menu_item action_selected disabled" id="tool_move_bottom">
+      置于底层
+      <span class="shortcut">⌘⇧↓</span>
+    </div>
+    <div class="separator"></div>
+    <div class="menu_item action_multi_selected disabled" id="tool_group">
+      合并所选对象
+      <span class="shortcut">⌘G</span>
+    </div>
+    <div class="menu_item action_group_selected disabled" id="tool_ungroup">
+      解除合并
+      <span class="shortcut">⌘⇧G</span>
+    </div>
+    <div class="separator"></div>
+    <div class="menu_item action_path_convert_selected disabled" id="tool_topath">转为 Path</div>
+    <div class="menu_item action_path_selected disabled" id="tool_reorient">重新调整 path</div>
+  </div>
+</div>
+
+<div class="menu">
+  <div class="menu_title">视图</div>
+  <div class="menu_list inverted-undo" id="view_menu">
+    <div class="menu_item push_button_pressed" id="tool_rulers">
+      显示刻度尺
+      <span class="shortcut">⇧R</span>
+    </div>
+    <div class="menu_item" id="tool_wireframe">显示边框</div>
+    <div class="menu_item" id="tool_snap">网格对齐</div>
+    <div class="separator"></div>
+    <div class="menu_item" id="tool_source" data-action="source">
+      源代码...
+      <span class="shortcut">⌘U</span>
+    </div>
+  </div>
+</div>
+<div class="menu-right">
+  <button class="menu-icon" id="darkmode-button">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+      <path
+        d="M17.66 7.93L12 2.27 6.34 7.93c-3.12 3.12-3.12 8.19 0 11.31C7.9 20.8 9.95 21.58 12 21.58c2.05 0 4.1-.78 5.66-2.34 3.12-3.12 3.12-8.19 0-11.31zM12 19.59c-1.6 0-3.11-.62-4.24-1.76C6.62 16.69 6 15.19 6 13.59s.62-3.11 1.76-4.24L12 5.1v14.49z"
+      ></path>
+    </svg>
+  </button>
+</div>
