@@ -5,6 +5,7 @@ import { DOCUMENT } from '@angular/common';
 import { delay, fromEvent } from 'rxjs';
 
 import { isMac } from '@svgedit/svgcanvas/common/browser';
+import { SvgEditorComponent } from '../svg-editor.component';
 
 @Component({
   selector: 'ngx-menu-bar',
@@ -21,7 +22,7 @@ export class MenuBarComponent implements OnInit {
   get active() {
     return this._active;
   }
-  constructor(@Inject(DOCUMENT) private doc: Document) {}
+  constructor(@Inject(DOCUMENT) private doc: Document, private editor: SvgEditorComponent) {}
 
   ngOnInit(): void {
     fromEvent(this.doc, 'mousedown').subscribe(() => (this._active = false));
@@ -31,6 +32,10 @@ export class MenuBarComponent implements OnInit {
     evt.preventDefault();
     evt.stopPropagation();
     this._active = true;
+  }
+
+  onGridClick() {
+    this.editor.canvas.setZoom(this.editor.canvas.zoom + 0.5);
   }
 }
 

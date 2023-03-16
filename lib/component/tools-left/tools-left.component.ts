@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
+import { SvgEditorComponent } from '../svg-editor.component';
 
 @Component({
   selector: 'ngx-tools-left',
@@ -8,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
   }
 })
 export class ToolsLeftComponent implements OnInit {
-  constructor() {}
+  constructor(private editor: SvgEditorComponent) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
+
+  setMode(mode: string) {
+    this.editor.canvas.setMode(mode);
+  }
 }

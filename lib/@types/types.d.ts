@@ -7,6 +7,7 @@ declare module '@svgedit/svgcanvas' {
      * @param {module:SVGeditor.configObj.curConfig} config - An object that contains configuration data
      */
     constructor(container: HTMLElement, config: Record<string, any>);
+    [key: string]: any;
 
     static $id: typeof document.getElementById;
     static $qq: typeof document.querySelector;
@@ -137,6 +138,7 @@ declare module '@svgedit/svgcanvas' {
       UndoManager: any;
     };
   }
+
   export default SvgCanvas;
 }
 

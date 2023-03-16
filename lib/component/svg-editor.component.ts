@@ -37,7 +37,7 @@ export class SvgEditorComponent implements OnInit, AfterContentInit {
   @ViewChild('workarea', { static: true }) workarea!: ElementRef<HTMLDivElement>;
   @Output() editorLoad = new EventEmitter<HTMLDivElement>();
 
-  private canvas: any;
+  canvas!: SvgCanvas;
 
   constructor(@Inject(NGX_SVG_EDITOR_CONFIG) private config: NgxSvgEditorConfig) {}
 
@@ -46,7 +46,7 @@ export class SvgEditorComponent implements OnInit, AfterContentInit {
   }
 
   ngOnInit(): void {
-    const container = this.svgCanvas.nativeElement;
+    const container = this.workarea.nativeElement;
     const { clientWidth: width, clientHeight: height } = container;
 
     const config = {
