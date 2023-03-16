@@ -29,7 +29,7 @@
       "@stories": ["stories"],
       "@stories/*": ["stories/*"]
     },
-    "typeRoots": ["./stories/@types", "./node_modules/@types"]
+    "typeRoots": ["./stories/@types", "./node_modules/@types", "./lib/@types"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

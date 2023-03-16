@@ -1,4 +1,10 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+// @ts-ignore
+
+import { Component, HostBinding, Inject, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { delay, fromEvent } from 'rxjs';
+
+import { isMac } from '@svgedit/svgcanvas/common/browser';
 
 @Component({
   selector: 'ngx-menu-bar',
@@ -8,14 +14,24 @@ import { Component, ElementRef, OnInit } from '@angular/core';
   }
 })
 export class MenuBarComponent implements OnInit {
-  menus: MenuItem[] = [];
-  constructor(private elementRef: ElementRef<HTMLDivElement>) {}
+  modKey = isMac() ? '⌘' : 'Ctrl+';
+  hoverName?: MenuName;
+  private _active = false;
+  @HostBinding('class.active')
+  get active() {
+    return this._active;
+  }
+  constructor(@Inject(DOCUMENT) private doc: Document) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    fromEvent(this.doc, 'mousedown').subscribe(() => (this._active = false));
+  }
 
-  onMousedown() {}
+  onMousedown(evt: MouseEvent) {
+    evt.preventDefault();
+    evt.stopPropagation();
+    this._active = true;
+  }
 }
 
-export interface MenuItem {
-  title: string;
-}
+export type MenuName = 'logo' | 'file' | 'edit' | 'object' | 'view';

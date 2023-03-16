@@ -56,8 +56,8 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "./lib/svg-editor/",
-                "output": "/assets/svg-editor/"
+                "input": "./lib/editor-assets/",
+                "output": "/assets/editor-assets/"
               }
             ]
           }

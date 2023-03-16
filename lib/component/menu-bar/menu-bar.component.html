@@ -1,5 +1,5 @@
-<a class="menu">
-  <div class="menu_title logo">
+<a class="menu" [class.open]="hoverName === 'logo'">
+  <div class="menu_title logo" id="logo" (mousedown)="onMousedown($event)" (mouseover)="hoverName = 'logo'">
     <svg viewBox="0 0 16 16" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
       <path d="M-.1 16.1L16 .04V16.1H-.1z"></path>
       <path d="M0 16.1V.1l16 16H0z" fill="var(--z7)"></path>
@@ -14,57 +14,62 @@
   </div>
 </a>
 
-<div class="menu">
-  <div class="menu_title" (mousedown)="onMousedown()">文件</div>
+<div class="menu" [class.open]="hoverName === 'file'">
+  <div class="menu_title" (mousedown)="onMousedown($event)" (mouseover)="hoverName = 'file'">文件</div>
   <div class="menu_list inverted-undo" id="file_menu">
     <div data-action="clear" id="tool_clear" class="menu_item">新建文档</div>
 
     <div id="tool_open" class="menu_item">
       <input type="file" accept="image/svg+xml" id="tool_open_input" />
       打开SVG...
-      <span class="shortcut" style="display: none">⌘O</span>
+      <span class="shortcut" style="display: none">{{ modKey }}O</span>
     </div>
 
     <div id="tool_import" class="menu_item">
       <input type="file" accept="image/*" id="tool_import_input" />
       替换图片...
-      <span class="shortcut" style="display: none">⌘K</span>
+      <span class="shortcut" style="display: none">{{ modKey }}K</span>
     </div>
     <div data-action="save" id="tool_save" class="menu_item">
       保存图片...
-      <span class="shortcut">⌘S</span>
+      <span class="shortcut">{{ modKey }}S</span>
     </div>
     <div data-action="export" id="tool_export" class="menu_item">导出 PNG</div>
   </div>
 </div>
 
-<div class="menu">
+<div
+  class="menu"
+  [class.open]="hoverName === 'edit'"
+  (mousedown)="onMousedown($event)"
+  (mouseover)="hoverName = 'edit'"
+>
   <div class="menu_title">编辑</div>
   <div class="menu_list inverted-undo" id="edit_menu">
     <div data-action="undo" class="menu_item" id="tool_undo">
       撤消
-      <span class="shortcut">⌘Z</span>
+      <span class="shortcut">{{ modKey }}Z</span>
     </div>
     <div data-action="redo" class="menu_item" id="tool_redo">
       重做
-      <span class="shortcut">⌘Y</span>
+      <span class="shortcut">{{ modKey }}Y</span>
     </div>
     <div class="separator"></div>
     <div data-action="cutSelected" class="menu_item action_selected disabled" id="tool_cut">
       剪切
-      <span class="shortcut">⌘X</span>
+      <span class="shortcut">{{ modKey }}X</span>
     </div>
     <div data-action="copySelected" class="menu_item action_selected disabled" id="tool_copy">
       复制
-      <span class="shortcut">⌘C</span>
+      <span class="shortcut">{{ modKey }}C</span>
     </div>
     <div data-action="pasteSelected" class="menu_item action_selected disabled" id="tool_paste">
       粘贴
-      <span class="shortcut">⌘V</span>
+      <span class="shortcut">{{ modKey }}V</span>
     </div>
     <div data-action="duplicateSelected" class="menu_item action_selected disabled" id="tool_clone">
       复制并粘贴
-      <span class="shortcut">⌘D</span>
+      <span class="shortcut">{{ modKey }}D</span>
     </div>
     <div data-action="deleteSelected" class="menu_item action_selected disabled" id="tool_delete">
       删除
@@ -73,33 +78,38 @@
   </div>
 </div>
 
-<div class="menu">
+<div
+  class="menu"
+  [class.open]="hoverName === 'object'"
+  (mousedown)="onMousedown($event)"
+  (mouseover)="hoverName = 'object'"
+>
   <div class="menu_title">对象</div>
   <div class="menu_list inverted-undo" id="object_menu">
     <div class="menu_item action_selected disabled" id="tool_move_top">
       置于顶层
-      <span class="shortcut">⌘⇧↑</span>
+      <span class="shortcut">{{ modKey }}Shift+↑</span>
     </div>
     <div class="menu_item action_selected disabled" id="tool_move_up">
       置于上一层
-      <span class="shortcut">⌘↑</span>
+      <span class="shortcut">{{ modKey }}↑</span>
     </div>
     <div class="menu_item action_selected disabled" id="tool_move_down">
       置于下一层
-      <span class="shortcut">⌘↓</span>
+      <span class="shortcut">{{ modKey }}↓</span>
     </div>
     <div class="menu_item action_selected disabled" id="tool_move_bottom">
       置于底层
-      <span class="shortcut">⌘⇧↓</span>
+      <span class="shortcut">{{ modKey }}Shift+↓</span>
     </div>
     <div class="separator"></div>
     <div class="menu_item action_multi_selected disabled" id="tool_group">
       合并所选对象
-      <span class="shortcut">⌘G</span>
+      <span class="shortcut">{{ modKey }}G</span>
     </div>
     <div class="menu_item action_group_selected disabled" id="tool_ungroup">
       解除合并
-      <span class="shortcut">⌘⇧G</span>
+      <span class="shortcut">{{ modKey }}Shift+G</span>
     </div>
     <div class="separator"></div>
     <div class="menu_item action_path_convert_selected disabled" id="tool_topath">转为 Path</div>
@@ -107,19 +117,24 @@
   </div>
 </div>
 
-<div class="menu">
+<div
+  class="menu"
+  [class.open]="hoverName === 'view'"
+  (mousedown)="onMousedown($event)"
+  (mouseover)="hoverName = 'view'"
+>
   <div class="menu_title">视图</div>
   <div class="menu_list inverted-undo" id="view_menu">
     <div class="menu_item push_button_pressed" id="tool_rulers">
       显示刻度尺
-      <span class="shortcut">⇧R</span>
+      <span class="shortcut">Shift+R</span>
     </div>
     <div class="menu_item" id="tool_wireframe">显示边框</div>
     <div class="menu_item" id="tool_snap">网格对齐</div>
     <div class="separator"></div>
     <div class="menu_item" id="tool_source" data-action="source">
       源代码...
-      <span class="shortcut">⌘U</span>
+      <span class="shortcut">{{ modKey }}U</span>
     </div>
   </div>
 </div>

@@ -10,12 +10,10 @@ import {
   OnInit,
   Output,
   QueryList,
-  ViewChild,
-  ViewChildren
+  ViewChild
 } from '@angular/core';
 
-// @ts-ignore
-import svgCanvas from '@svgedit/svgcanvas';
+import SvgCanvas from '@svgedit/svgcanvas';
 import { fromEvent } from 'rxjs';
 import { NamedTemplate } from '../widget/named-template';
 
@@ -48,25 +46,40 @@ export class SvgEditorComponent implements OnInit, AfterContentInit {
   }
 
   ngOnInit(): void {
-    const container = this.workarea.nativeElement;
+    const container = this.svgCanvas.nativeElement;
     const { clientWidth: width, clientHeight: height } = container;
 
     const config = {
-      initFill: { color: 'FFFFFF', opacity: 1 },
-      initStroke: { color: '000000', opacity: 1, width: 1 },
-      text: { stroke_width: 0, font_size: 24, font_family: 'serif' },
+      canvas_expansion: 1,
+      dimensions: [800, 600],
+      initFill: { color: 'fff', opacity: 1 },
+      initStroke: { width: 1.5, color: '000', opacity: 1 },
       initOpacity: 1,
-      imgPath: '/src/editor/images',
-      dimensions: [width, height],
-      baseUnit: 'px'
+      imgPath: '/assets/editor-assets/images',
+      extPath: '/assets/editor-assets/extensions',
+      jGraduatePath: '/assets/editor-assets/images',
+      extensions: [],
+      initTool: 'select',
+      wireframe: false,
+      colorPickerCSS: false,
+      gridSnapping: false,
+      gridColor: '#000',
+      baseUnit: 'px',
+      snappingStep: 10,
+      showRulers: true,
+      show_outside_canvas: false,
+      no_save_warning: true
     };
-    const canvas = new svgCanvas(container, config);
+    const canvas = new SvgCanvas(container, config);
+    console.log(canvas);
     canvas.updateCanvas(width, height);
     this.canvas = canvas;
+    container.style.width = '800px';
+    container.style.height = '600px';
 
     fromEvent(window, 'resize').subscribe(() => {
       const { clientWidth: width, clientHeight: height } = container;
-      canvas.updateCanvas(width, height);
+      // canvas.updateCanvas(width, height);
     });
   }
 

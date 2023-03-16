@@ -1,7 +1,7 @@
 .menu_bar {
   padding: 0 0 0 var(--x12);
   position: relative;
-  z-index: 2;
+  z-index: 3;
   height: var(--x8);
   display: flex;
 }
@@ -45,9 +45,8 @@
   background: var(--z15);
   padding: var(--x2) 0;
   border-radius: 0 var(--x1) var(--x1) var(--x1);
-  box-shadow:  var(--shadow);
+  box-shadow: var(--shadow);
 }
-
 
 .menu_bar.active .menu.open .menu_title {
   background: var(--z15);
@@ -62,18 +61,17 @@
 .menu .menu_list {
   display: none;
   position: absolute;
-
 }
 
 .menu_list .menu_item {
   position: relative;
   overflow: hidden;
   line-height: var(--x6);
-  padding: var(--x1) var(--x16) var(--x1) var(--x6);
+  padding: var(--x1) var(--x17) var(--x1) var(--x6);
   color: var(--z3);
 }
 
-.menu_list input[type=file] {
+.menu_list input[type='file'] {
   -webkit-appearance: none;
   position: absolute;
   opacity: 0;
@@ -86,7 +84,6 @@
   background: red;
   z-index: 100;
 }
-
 
 .menu_list .menu_item.tool_button {
   background: transparent;
@@ -167,15 +164,15 @@
 }
 
 .menu-right button:hover svg {
-  fill:  var(--z12);
+  fill: var(--z12);
 }
 
 .menu-right svg {
-  fill:  var(--z5);
+  fill: var(--z5);
 }
 
 .inverted .menu-right svg {
-  fill:  var(--z10);
+  fill: var(--z10);
 }
 
 .logo svg {
@@ -185,14 +182,13 @@
 }
 
 .logo svg path:last-child {
-  fill:  var(--z13);
+  fill: var(--z13);
 }
 
 .logo:hover svg {
-  fill:  var(--z9);
+  fill: var(--z9);
 }
 
 .logo svg path:last-child {
-  fill:  var(--z15);
+  fill: var(--z15);
 }
-

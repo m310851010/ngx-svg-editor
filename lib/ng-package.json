@@ -5,5 +5,5 @@
     "entryFile": "./public-api.ts",
     "styleIncludePaths": ["node_modules"]
   },
-  "assets": ["./**/*.less", "./extensions/**/*.*", "./images/**/*.*", "./shapelib/**/*.*"]
+  "assets": ["./**/*.less", "./editor-assets/**/*.*"]
 }
